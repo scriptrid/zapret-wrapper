@@ -1,9 +1,9 @@
 package ru.scriptrid.zapretwrapper.menu;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
-import ru.scriptrid.zapretwrapper.service.ZapretService;
+import ru.scriptrid.zapretwrapper.config.ZapretConfigurationProperties;
+import ru.scriptrid.zapretwrapper.service.ZapretPropertiesService;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,13 +15,15 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class ZapretMenu extends  Menu {
 
-    private final ZapretService zapretService;
+    private final ZapretPropertiesService propertiesService;
+    private final ZapretConfigurationProperties zapretConfigurationProperties;
 
     @Override
     protected Map<String, Runnable> functions() {
         Map<String, Runnable> functions = new HashMap<>();
-        functions.put("path", () -> zapretService.getPath());
-        functions.put("specifyPath", () -> zapretService.specifyPath());
+        functions.put("properties", () -> System.out.println(this.zapretConfigurationProperties));
+        functions.put("specifyPath", () -> propertiesService.specifyPath());
+        functions.put("specifyBat", () -> propertiesService.specifyBat());
         return functions;
     }
 

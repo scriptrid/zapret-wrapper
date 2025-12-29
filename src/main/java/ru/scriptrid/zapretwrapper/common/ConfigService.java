@@ -3,6 +3,7 @@ package ru.scriptrid.zapretwrapper.common;
 import org.springframework.stereotype.Component;
 import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
+import ru.scriptrid.zapretwrapper.constant.WinZapretConstants;
 
 import java.io.File;
 import java.io.FileReader;
@@ -20,7 +21,23 @@ public class ConfigService {
 
     public void updateZapretPath(String absolutePath) {
         try {
-            updateYaml("zapret.absolute-path", absolutePath);
+            updateYaml(WinZapretConstants.ZAPRET_PATH_CONFIG_PARAMETER, absolutePath);
+        } catch (IOException e) {
+            System.out.println("Error while updating zapret.absolute-path");
+        }
+    }
+
+    public void updateBatPath(String batPath) {
+        try {
+            updateYaml(WinZapretConstants.BAT_PATH_CONFIG_PARAMETER, batPath);
+        } catch (IOException e) {
+            System.out.println("Error while updating zapret.absolute-path");
+        }
+    }
+
+    public void updateBatName(String batName) {
+        try {
+            updateYaml(WinZapretConstants.BAT_NAME_CONFIG_PARAMETER, batName);
         } catch (IOException e) {
             System.out.println("Error while updating zapret.absolute-path");
         }
@@ -40,7 +57,6 @@ public class ConfigService {
 
         updateNestedMap(config, key, value);
 
-        // Сохраняем обратно
         DumperOptions options = new DumperOptions();
         options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
         options.setPrettyFlow(true);
