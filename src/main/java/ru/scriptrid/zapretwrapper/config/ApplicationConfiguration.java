@@ -10,10 +10,8 @@ import java.util.Scanner;
  */
 @Configuration
 public class ApplicationConfiguration {
-
     @Bean
     public Scanner scanner() {
         return new Scanner(System.in);
     }
-
 }

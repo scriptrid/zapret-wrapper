@@ -4,5 +4,4 @@ spring:
 logging:
   level:
     org.example: trace
-zapret:
-  absolute-path: E:\ultra-zapret\zapret-win-bundle-master
+
