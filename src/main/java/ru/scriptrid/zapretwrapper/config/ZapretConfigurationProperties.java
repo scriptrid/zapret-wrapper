@@ -23,13 +23,13 @@ public class ZapretConfigurationProperties {
 
     @PostConstruct
     public void validate() {
-        if (folderPath == null || folderPath.isBlank()) {
+        if (!folderPathIsSpecified()) {
             log.warn("zapret folder path is null or empty");
         }
-        if (batPath == null || batPath.isBlank()) {
+        if (!batPathIsSpecified()) {
             log.warn("zapret bat file path is null or empty");
         }
-        if (batName == null || batName.isBlank()) {
+        if (!batNameIsSpecified()) {
             log.warn("zapret bat file name is null or empty");
         }
         log.info("""

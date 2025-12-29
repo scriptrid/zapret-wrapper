@@ -5,9 +5,6 @@ package ru.scriptrid.zapretwrapper.service;
  */
 public interface ZapretPropertiesService {
 
-    void getFolderPath();
-
-    void getBatFileName();
 
     String findZapretFolder(String absolutePath);
 

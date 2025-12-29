@@ -30,28 +30,6 @@ public class WinZapretPropertiesService implements ZapretPropertiesService {
     private final ZapretConfigurationProperties zapretConfigurationProperties;
 
     @Override
-    public void getFolderPath() {
-        if (zapretConfigurationProperties.folderPathIsSpecified()) {
-            System.out.println(zapretConfigurationProperties.getFolderPath());
-        } else {
-            specifyPath();
-        }
-    }
-
-    @Override
-    public void getBatFileName() {
-        if (zapretConfigurationProperties.batNameIsSpecified()) {
-            System.out.println(zapretConfigurationProperties.getBatName());
-        } else if (zapretConfigurationProperties.folderPathIsSpecified()) {
-            specifyBat();
-        } else {
-            System.out.println("""
-                    Zapret folder is unknown! Specify it
-                    """);
-        }
-    }
-
-    @Override
     public void specifyPath() {
         System.out.println("""
                 Specify the absolute path to your zapret-win-bundle-master.
@@ -68,7 +46,11 @@ public class WinZapretPropertiesService implements ZapretPropertiesService {
 
     @Override
     public void specifyBat() {
-        if (zapretConfigurationProperties.batNameIsSpecified()) {
+        if (!zapretConfigurationProperties.folderPathIsSpecified()) {
+            System.out.println("""
+                    Zapret folder is unknown! Specify it
+                    """);
+            return;
         }
         System.out.println("""
                 Specify name of your zapret launcher bat file
