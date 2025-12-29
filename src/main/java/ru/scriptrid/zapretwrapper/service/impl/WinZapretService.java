@@ -10,9 +10,7 @@ import ru.scriptrid.zapretwrapper.service.ZapretService;
 
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.Scanner;
 import java.util.stream.Stream;
@@ -33,38 +31,25 @@ public class WinZapretService implements ZapretService {
     @Override
     public void getPath() {
         if (absolutePath.equals("null")) {
-            System.out.println("""
-                    You must to specify absolute path to your zapret-win-bundle-master.
-                    You may add it to application.yaml config.
-                    Or type it right now.
-                    Note: The bol-van`s zapret-win-bundle-master is required.
-                    To exit from this method press Enter
-                    """);
-            String input = scanner.nextLine();
-            if (input == null) {
-                return;
-            } else {
-                String absolutePath = findZapret(input);
-                configService.updateZapretPath(this.absolutePath);
-            }
+            specifyPath();
         }
-        System.out.println(absolutePath);
+        else  {
+            System.out.println(absolutePath);
+        }
     }
 
     @Override
     public void specifyPath() {
         System.out.println("""
-                    Specify the absolute path to your zapret-win-bundle-master.
-                    You may add it to application.yaml config.
-                    Or type it right now.
-                    Note: The bol-van`s zapret-win-bundle-master is required.
-                    To exit from this method press Enter
-                    """);
+                Specify the absolute path to your zapret-win-bundle-master.
+                Note: The bol-van`s zapret-win-bundle-master is required.
+                To exit from this method press Enter
+                """);
         String input = scanner.nextLine();
-        if (input == null) {
-            return;
-        } else {
-            findZapret(input);
+        if (input != null) {
+            String zapretPath = findZapret(input);
+            configService.updateZapretPath(zapretPath);
+            this.absolutePath = zapretPath;
         }
     }
 
