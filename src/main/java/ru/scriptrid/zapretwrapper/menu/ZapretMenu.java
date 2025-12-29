@@ -5,6 +5,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 import ru.scriptrid.zapretwrapper.service.ZapretService;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -18,7 +19,10 @@ public class ZapretMenu extends  Menu {
 
     @Override
     protected Map<String, Runnable> functions() {
-        return Map.of("path", () -> zapretService.getPath());
+        Map<String, Runnable> functions = new HashMap<>();
+        functions.put("path", () -> zapretService.getPath());
+        functions.put("specifyPath", () -> zapretService.specifyPath());
+        return functions;
     }
 
     @Override

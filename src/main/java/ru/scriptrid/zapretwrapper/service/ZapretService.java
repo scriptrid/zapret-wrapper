@@ -7,5 +7,7 @@ public interface ZapretService {
 
     void getPath();
 
-    void findZapret(String absolutePath);
+    String findZapret(String absolutePath);
+
+    void specifyPath();
 }
