@@ -31,7 +31,7 @@ public class ConfigService {
         try {
             updateYaml(WinZapretConstants.BAT_PATH_CONFIG_PARAMETER, batPath);
         } catch (IOException e) {
-            System.out.println("Error while updating zapret.absolute-path");
+            System.out.println("Error while updating zapret.bat-path");
         }
     }
 
@@ -39,7 +39,7 @@ public class ConfigService {
         try {
             updateYaml(WinZapretConstants.BAT_NAME_CONFIG_PARAMETER, batName);
         } catch (IOException e) {
-            System.out.println("Error while updating zapret.absolute-path");
+            System.out.println("Error while updating zapret.bat-name");
         }
     }
 

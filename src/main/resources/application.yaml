@@ -5,4 +5,6 @@ logging:
   level:
     org.example: trace
 zapret:
-  folder-path: E:\ultra-zapret\zapret-win-bundle-master
+  folder-path:
+  bat-path:
+  bat-name:
